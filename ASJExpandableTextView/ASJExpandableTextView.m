@@ -231,14 +231,14 @@
 }
 
 - (void)animateConstraintToHeight:(CGFloat)height {
-  [self layoutIfNeeded];
+  [self.superview layoutIfNeeded];
   self.heightConstraint.constant = height;
   [UIView animateWithDuration:0.30
                         delay:0.0
                       options:UIViewAnimationOptionLayoutSubviews
                    animations:^{
                      [self scrollToBottom];
-                     [self layoutIfNeeded];
+                     [self.superview layoutIfNeeded];
                    } completion:nil];
 }
 
