@@ -38,14 +38,6 @@
                                 <color key="textColor" red="0.70137746710526316" green="0.54849403782894735" blue="0.31630345394736842" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="I am IBInspectable. I can be set and completely configured in a Storyboard or Xib. I am currently set to expand to 20 lines."/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasDynamicHeight" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="maximumLineCount">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowDoneButtonOverKeyboard" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.81944444444444442" green="0.50302154943436661" blue="0.16559355214234717" alpha="1" colorSpace="calibratedRGB"/>
