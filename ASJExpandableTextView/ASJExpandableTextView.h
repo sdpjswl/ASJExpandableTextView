@@ -22,6 +22,8 @@
 
 @import UIKit;
 
+typedef void (^DoneTappedBlock)(NSString *text);
+
 @interface ASJExpandableTextView : UITextView
 
 /**
@@ -46,5 +48,12 @@
  *  keyboard.  Tapping it will hide the keyboard.
  */
 @property (nonatomic) IBInspectable BOOL shouldShowDoneButtonOverKeyboard;
+
+/**
+ *  A block that will be executed when the "Done" button over
+ *  the keyboard will be tapped. Unusable if "shouldShowDoneButtonOverKeyboard"
+ *  not set to YES.
+ */
+@property (copy) DoneTappedBlock doneTappedBlock;
 
 @end

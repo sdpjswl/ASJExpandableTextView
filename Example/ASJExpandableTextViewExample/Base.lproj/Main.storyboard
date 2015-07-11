@@ -17,6 +17,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ND9-2Z-GO7">
+                                <rect key="frame" x="259" y="278" width="70" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="0Dn-c1-Eq3"/>
+                                    <constraint firstAttribute="height" constant="50" id="mtJ-r3-7vx"/>
+                                </constraints>
+                                <state key="normal" title="I move">
+                                    <color key="titleColor" red="0.81944444439999997" green="0.50302154939999999" blue="0.16559355210000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AA7-dK-xA7" customClass="ASJExpandableTextView">
                                 <rect key="frame" x="50" y="70" width="500" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,18 +47,6 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowDoneButtonOverKeyboard" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ND9-2Z-GO7">
-                                <rect key="frame" x="259" y="278" width="70" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="0Dn-c1-Eq3"/>
-                                    <constraint firstAttribute="height" constant="50" id="mtJ-r3-7vx"/>
-                                </constraints>
-                                <state key="normal" title="I move">
-                                    <color key="titleColor" red="0.81944444439999997" green="0.50302154939999999" blue="0.16559355210000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.81944444444444442" green="0.50302154943436661" blue="0.16559355214234717" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -66,6 +66,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="AA7-dK-xA7" id="cbx-cT-vl5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

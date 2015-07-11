@@ -22,11 +22,11 @@
 
 #import "ASJExpandableTextView.h"
 
-typedef void (^ASJInputAccessoryViewBlock)(void);
+typedef void (^AccessoryViewDoneBlock)(void);
 
 @interface ASJInputAccessoryView : UIView
 
-@property (copy) ASJInputAccessoryViewBlock doneTappedBlock;
+@property (copy) AccessoryViewDoneBlock doneTappedBlock;
 
 @end
 
@@ -119,6 +119,9 @@ typedef void (^ASJInputAccessoryViewBlock)(void);
   ASJInputAccessoryView *inputAccessoryView = self.asjInputAccessoryView;
   inputAccessoryView.doneTappedBlock = ^{
     [self resignFirstResponder];
+    if (_doneTappedBlock) {
+      _doneTappedBlock(self.text);
+    }
   };
   self.inputAccessoryView = inputAccessoryView;
 }

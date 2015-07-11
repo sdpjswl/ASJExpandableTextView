@@ -9,7 +9,9 @@
 #import "ViewController.h"
 #import "ASJExpandableTextView.h"
 
-@interface ViewController ()
+@interface ViewController () {
+  IBOutlet ASJExpandableTextView *textView;
+}
 
 @end
 
@@ -18,6 +20,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
+  textView.doneTappedBlock = ^(NSString *text) {
+    NSLog(@"you typed: %@", text);
+  };
 }
 
 - (void)didReceiveMemoryWarning {
