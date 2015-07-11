@@ -1,7 +1,7 @@
 # ASJExpandableTextView
-UITextView most obvious omission is placeholder text. This class adds the provision to set a placeholder and an option to make the text view expand and contract according to its content size.
+UITextView's most obvious omission is the ability to set placeholder text. This class fixes that and provides more. You can make the text view expand and contract according to its content and have a "Done" button over the keyboard to hide it.
 
-Creating a text view is easy. It has a simple interface consisting of four properties which are IBInspectable. This means that they can be set using the interface builder of your choice; Xibs or Storyboards.
+Creating an ASJExpandableTextView is easy. It has a simple interface consisting of four properties which are IBInspectable. This means that they can be set using the interface builder of your choice; Xibs or Storyboards.
 
 ```
 @property (copy, nonatomic) IBInspectable NSString *placeholder;
