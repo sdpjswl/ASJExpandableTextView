@@ -15,7 +15,7 @@ You can create one using just the interface builder, drop in a UITextView and ch
 
 `@property (nonatomic) IBInspectable NSUInteger maximumLineCount;`
 
-###To-do:
+###To-do
 - Add input accessory view to hide keyboard
 
 ###Thanks
