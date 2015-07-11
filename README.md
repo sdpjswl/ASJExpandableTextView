@@ -1,22 +1,38 @@
 # ASJExpandableTextView
 UITextView most obvious omission is placeholder text. This class adds the provision to set a placeholder and an option to make the text view expand and contract according to its content size.
 
-Creating a text view is easy. It has a simple interface consisting of three properties which are IBInspectable. This means that they can be set using the interface builder of your choice; Xibs or Storyboards.
+Creating a text view is easy. It has a simple interface consisting of four properties which are IBInspectable. This means that they can be set using the interface builder of your choice; Xibs or Storyboards.
 
-`@property (copy, nonatomic) IBInspectable NSString *placeholder;`
+```
+@property (copy, nonatomic) IBInspectable NSString *placeholder;
+```
+Sets the placeholder. Visible when there is nothing typed in the text view.
 
-`@property (nonatomic) IBInspectable BOOL hasDynamicHeight;`
+```
+@property (nonatomic) IBInspectable BOOL hasDynamicHeight;
+```
+Set this to make the text view expand and contract according to its content.
 
-`@property (nonatomic) IBInspectable NSUInteger maximumLineCount;`
+```
+@property (nonatomic) IBInspectable NSUInteger maximumLineCount;
+```
+You can set the number of visible lines of the text view. Default is 4. To use this property, `hasDynamicHeight` must be set to `YES`.
+
+```
+@property (nonatomic) IBInspectable BOOL shouldShowDoneButtonOverKeyboard;
+```
+The "return" key on the keyboard for a `UITextView` brings a new line, unlike a `UITextField` where the keyboard gets hidden. Set this property to show a "Done" button over the keyboard which can hide the keyboard.
+
+```
+@property (copy) DoneTappedBlock doneTappedBlock;
+```
+You can handle the event of the keyboard getting hidden using this block. To use this property, `shouldShowDoneButtonOverKeyboard` must be set to `YES`.
 
 ![alt tag](Images/IBInspectable.png)
 
 You can create one using just the interface builder, drop in a UITextView and change the class to `ASJExpandableTextView`.
 
 ![alt tag](Images/CustomClass.png)
-
-###To-do
-- Add input accessory view to hide keyboard
 
 ###Thanks
 
