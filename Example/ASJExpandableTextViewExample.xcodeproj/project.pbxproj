@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0122AB71B518E45004DED5D /* ASJInputAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0122AB61B518E45004DED5D /* ASJInputAccessoryView.xib */; };
 		C05A9DC41B4D6698003CD214 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C05A9DC31B4D6698003CD214 /* main.m */; };
 		C05A9DC71B4D6698003CD214 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C05A9DC61B4D6698003CD214 /* AppDelegate.m */; };
 		C05A9DCA1B4D6698003CD214 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C05A9DC91B4D6698003CD214 /* ViewController.m */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C0122AB61B518E45004DED5D /* ASJInputAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASJInputAccessoryView.xib; sourceTree = "<group>"; };
 		C05A9DBE1B4D6698003CD214 /* ASJExpandableTextViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASJExpandableTextViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05A9DC21B4D6698003CD214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C05A9DC31B4D6698003CD214 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				C0CBA3A51B5033F70013DD90 /* ASJExpandableTextView.h */,
 				C0CBA3A61B5033F70013DD90 /* ASJExpandableTextView.m */,
+				C0122AB61B518E45004DED5D /* ASJInputAccessoryView.xib */,
 			);
 			name = ASJExpandableTextView;
 			path = ../../ASJExpandableTextView;
@@ -216,6 +219,7 @@
 				C05A9DCD1B4D6698003CD214 /* Main.storyboard in Resources */,
 				C05A9DD21B4D6698003CD214 /* LaunchScreen.xib in Resources */,
 				C05A9DCF1B4D6698003CD214 /* Images.xcassets in Resources */,
+				C0122AB71B518E45004DED5D /* ASJInputAccessoryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

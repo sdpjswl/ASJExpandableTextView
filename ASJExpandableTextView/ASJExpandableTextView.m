@@ -22,6 +22,25 @@
 
 #import "ASJExpandableTextView.h"
 
+typedef void (^ASJInputAccessoryViewBlock)(void);
+
+@interface ASJInputAccessoryView : UIView
+
+@property (copy) ASJInputAccessoryViewBlock doneTappedBlock;
+
+@end
+
+@implementation ASJInputAccessoryView
+
+- (IBAction)doneButtonTapped:(UIBarButtonItem *)sender {
+  if (_doneTappedBlock) {
+    _doneTappedBlock();
+  }
+}
+
+@end
+
+
 @interface ASJExpandableTextView () {
   UILabel *placeholderLabel;
   NSUInteger currentLine;
@@ -29,6 +48,7 @@
   BOOL isPlaceholderVisible, areLayoutDefaultsSet;
 }
 
+@property (weak, nonatomic) ASJInputAccessoryView *asjInputAccessoryView;
 @property (nonatomic) CGFloat heightOfOneLine;
 @property (nonatomic) CGFloat currentContentHeight;
 @property (nonatomic) CGFloat currentTextViewHeight;
@@ -36,6 +56,8 @@
 @property (nonatomic) NSLayoutConstraint *heightConstraint;
 
 - (void)initialisations;
+- (void)setLayoutDefaults;
+- (void)prepareInputAccessoryView;
 - (void)setDefaults;
 - (void)executeDefaultFontHack;
 - (void)setPlaceholderLabel;
@@ -86,6 +108,25 @@
   previousContentHeight = _currentContentHeight = defaultContentHeight;
 }
 
+- (BOOL)becomeFirstResponder {
+  if (_shouldShowDoneButtonOverKeyboard) {
+    [self prepareInputAccessoryView];
+  }
+  return [super becomeFirstResponder];
+}
+
+- (void)prepareInputAccessoryView {
+  ASJInputAccessoryView *inputAccessoryView = self.asjInputAccessoryView;
+  inputAccessoryView.doneTappedBlock = ^{
+    [self resignFirstResponder];
+  };
+  self.inputAccessoryView = inputAccessoryView;
+}
+
+- (ASJInputAccessoryView *)asjInputAccessoryView {
+  return (ASJInputAccessoryView *)[[NSBundle mainBundle] loadNibNamed:@"ASJInputAccessoryView" owner:self options:nil][0];
+}
+
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -102,6 +143,7 @@
 - (void)setDefaults {
   _hasDynamicHeight = NO;
   _maximumLineCount = 4;
+  _shouldShowDoneButtonOverKeyboard = NO;
   self.shouldShowPlaceholder = NO;
   self.textContainerInset = UIEdgeInsetsMake(8, 6, 8, 8);
 }

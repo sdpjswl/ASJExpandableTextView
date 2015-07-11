@@ -37,8 +37,14 @@
 
 /**
  *  This property is only of use when "hasDynamicHeight" is YES.
- *  Sets the maximum number of visible lines of text
+ *  Sets the maximum number of visible lines of text.
  */
 @property (nonatomic) IBInspectable NSUInteger maximumLineCount;
+
+/**
+ *  Set this property "YES" to show a "Done" button over the
+ *  keyboard.  Tapping it will hide the keyboard.
+ */
+@property (nonatomic) IBInspectable BOOL shouldShowDoneButtonOverKeyboard;
 
 @end
