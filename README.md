@@ -3,17 +3,17 @@ UITextView most obvious omission is placeholder text. This class adds the provis
 
 Creating a text view is easy. It has a simple interface consisting of three properties which are IBInspectable. This means that they can be set using the interface builder of your choice; Xibs or Storyboards.
 
-![alt tag](Images/IBInspectable.png)
-
-You can create one using just the interface builder, drop in a UITextView and change the class to `ASJExpandableTextView`.
-
-![alt tag](Images/CustomClass.png)
-
 `@property (copy, nonatomic) IBInspectable NSString *placeholder;`
 
 `@property (nonatomic) IBInspectable BOOL hasDynamicHeight;`
 
 `@property (nonatomic) IBInspectable NSUInteger maximumLineCount;`
+
+![alt tag](Images/IBInspectable.png)
+
+You can create one using just the interface builder, drop in a UITextView and change the class to `ASJExpandableTextView`.
+
+![alt tag](Images/CustomClass.png)
 
 ###To-do
 - Add input accessory view to hide keyboard
