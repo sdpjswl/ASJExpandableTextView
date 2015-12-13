@@ -32,7 +32,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 @implementation ASJInputAccessoryView
 
-- (IBAction)doneButtonTapped:(UIBarButtonItem *)sender {
+- (IBAction)doneButtonTapped:(UIBarButtonItem *)sender
+{
   if (_doneTappedBlock) {
     _doneTappedBlock();
   }
@@ -55,7 +56,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 @property (nonatomic) BOOL shouldShowPlaceholder;
 @property (nonatomic) NSLayoutConstraint *heightConstraint;
 
-- (void)initialisations;
+- (void)setup;
 - (void)setLayoutDefaults;
 - (void)prepareInputAccessoryView;
 - (void)setDefaults;
@@ -78,7 +79,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 {
   self = [super initWithFrame:frame textContainer:textContainer];
   if (self) {
-    [self initialisations];
+    [self setup];
   }
   return self;
 }
@@ -101,21 +102,27 @@ typedef void (^AccessoryViewDoneBlock)(void);
   }
 }
 
-- (void)setLayoutDefaults {
+- (void)setLayoutDefaults
+{
   currentLine = 1;
   defaultContentHeight = self.contentSize.height;
   defaultTextViewHeight = self.frame.size.height;
   previousContentHeight = _currentContentHeight = defaultContentHeight;
 }
 
-- (BOOL)becomeFirstResponder {
+
+#pragma mark - Accessory view
+
+- (BOOL)becomeFirstResponder
+{
   if (_shouldShowDoneButtonOverKeyboard) {
     [self prepareInputAccessoryView];
   }
   return [super becomeFirstResponder];
 }
 
-- (void)prepareInputAccessoryView {
+- (void)prepareInputAccessoryView
+{
   ASJInputAccessoryView *inputAccessoryView = self.asjInputAccessoryView;
   inputAccessoryView.doneTappedBlock = ^{
     [self resignFirstResponder];
@@ -126,24 +133,28 @@ typedef void (^AccessoryViewDoneBlock)(void);
   self.inputAccessoryView = inputAccessoryView;
 }
 
-- (ASJInputAccessoryView *)asjInputAccessoryView {
+- (ASJInputAccessoryView *)asjInputAccessoryView
+{
   return (ASJInputAccessoryView *)[[NSBundle mainBundle] loadNibNamed:@"ASJInputAccessoryView" owner:self options:nil][0];
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
-#pragma mark - Set up
+#pragma mark - Setup
 
-- (void)initialisations {
+- (void)initialisations
+{
   [self setDefaults];
   [self executeDefaultFontHack];
   [self listenForNotifications];
 }
 
-- (void)setDefaults {
+- (void)setDefaults
+{
   _isExpandable = NO;
   _maximumLineCount = 4;
   _shouldShowDoneButtonOverKeyboard = NO;
@@ -151,7 +162,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
   self.textContainerInset = UIEdgeInsetsMake(8, 6, 8, 8);
 }
 
-- (void)executeDefaultFontHack {
+- (void)executeDefaultFontHack
+{
   /**
    Unless text is set, self.font is nil, it doesn't seem to initialise when the text view is created.
    */
@@ -159,7 +171,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
   self.text = nil;
 }
 
-- (void)setPlaceholderLabel {
+- (void)setPlaceholderLabel
+{
   CGFloat x = 10;
   CGFloat y = 8;
   CGFloat width = self.frame.size.width - 20;
@@ -180,8 +193,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 #pragma mark - Text change
 
-- (void)listenForNotifications {
-  
+- (void)listenForNotifications
+{
   [[NSNotificationCenter defaultCenter]
    addObserverForName:UITextViewTextDidBeginEditingNotification
    object:self queue:[NSOperationQueue mainQueue]
@@ -200,7 +213,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
    }];
 }
 
-- (void)handleTextChange {
+- (void)handleTextChange
+{
   if (self.text.length) {
     self.shouldShowPlaceholder = NO;
     return;
@@ -225,14 +239,16 @@ typedef void (^AccessoryViewDoneBlock)(void);
   [self handlePreviousLine];
 }
 
-- (CGFloat)currentContentHeight {
+- (CGFloat)currentContentHeight
+{
   return self.contentSize.height;
 }
 
 
 #pragma mark - Next and previous lines
 
-- (void)handleNextLine {
+- (void)handleNextLine
+{
   currentLine++;
   if (currentLine > _maximumLineCount) {
     return;
@@ -252,7 +268,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
   }
 }
 
-- (void)handlePreviousLine {
+- (void)handlePreviousLine
+{
   currentLine--;
   if (self.currentContentHeight >= self.currentTextViewHeight) {
     return;
@@ -272,7 +289,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
   }
 }
 
-- (CGFloat)heightOfOneLine {
+- (CGFloat)heightOfOneLine
+{
   return self.font.lineHeight;
 }
 
@@ -310,7 +328,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
                    } completion:nil];
 }
 
-- (NSLayoutConstraint *)heightConstraint {
+- (NSLayoutConstraint *)heightConstraint
+{
   for (NSLayoutConstraint *constraint in self.constraints) {
     if (constraint.firstAttribute == NSLayoutAttributeHeight) {
       return constraint;
@@ -319,25 +338,29 @@ typedef void (^AccessoryViewDoneBlock)(void);
   return nil;
 }
 
-- (CGFloat)currentTextViewHeight {
+- (CGFloat)currentTextViewHeight
+{
   return self.frame.size.height;
 }
 
-- (void)scrollToBottom {
+- (void)scrollToBottom
+{
   NSRange range = NSMakeRange(self.text.length - 1, 1);
   [self scrollRangeToVisible:range];
 }
 
 #pragma mark - Property setter overrides
 
-- (void)setPlaceholder:(NSString *)placeholder {
+- (void)setPlaceholder:(NSString *)placeholder
+{
   _placeholder = placeholder;
   placeholderLabel.text = _placeholder;
   [placeholderLabel sizeToFit];
   self.shouldShowPlaceholder = YES;
 }
 
-- (void)setText:(NSString *)text {
+- (void)setText:(NSString *)text
+{
   [super setText:text];
   if (text && text.length) {
     self.shouldShowPlaceholder = NO;
@@ -346,7 +369,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
   self.shouldShowPlaceholder = YES;
 }
 
-- (void)setShouldShowPlaceholder:(BOOL)shouldShowPlaceholder {
+- (void)setShouldShowPlaceholder:(BOOL)shouldShowPlaceholder
+{
   _shouldShowPlaceholder = shouldShowPlaceholder;
   if (_shouldShowPlaceholder) {
     placeholderLabel.alpha = 0.5;
