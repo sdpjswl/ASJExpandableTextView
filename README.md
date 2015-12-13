@@ -18,7 +18,7 @@ Set this to make the text view expand and contract according to its content.
 ```
 @property (nonatomic) IBInspectable NSUInteger maximumLineCount;
 ```
-You can set the number of visible lines of the text view. Default is 4. To use this property, `hasDynamicHeight` must be set to `YES`.
+You can set the number of visible lines of the text view. Default is 4. To use this property, `isExpandable` must be set to `YES`.
 
 ```
 @property (nonatomic) IBInspectable BOOL shouldShowDoneButtonOverKeyboard;
