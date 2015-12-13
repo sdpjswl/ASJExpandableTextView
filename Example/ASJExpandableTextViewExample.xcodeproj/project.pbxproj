@@ -14,19 +14,8 @@
 		C05A9DCD1B4D6698003CD214 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C05A9DCB1B4D6698003CD214 /* Main.storyboard */; };
 		C05A9DCF1B4D6698003CD214 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05A9DCE1B4D6698003CD214 /* Images.xcassets */; };
 		C05A9DD21B4D6698003CD214 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05A9DD01B4D6698003CD214 /* LaunchScreen.xib */; };
-		C05A9DDE1B4D6698003CD214 /* ASJExpandableTextViewExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C05A9DDD1B4D6698003CD214 /* ASJExpandableTextViewExampleTests.m */; };
 		C0CBA3A71B5033F70013DD90 /* ASJExpandableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CBA3A61B5033F70013DD90 /* ASJExpandableTextView.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C05A9DD81B4D6698003CD214 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C05A9DB61B4D6698003CD214 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C05A9DBD1B4D6698003CD214;
-			remoteInfo = ASJExpandableTextViewExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C0122AB61B518E45004DED5D /* ASJInputAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASJInputAccessoryView.xib; sourceTree = "<group>"; };
@@ -40,22 +29,12 @@
 		C05A9DCC1B4D6698003CD214 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C05A9DCE1B4D6698003CD214 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C05A9DD11B4D6698003CD214 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		C05A9DD71B4D6698003CD214 /* ASJExpandableTextViewExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASJExpandableTextViewExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C05A9DDC1B4D6698003CD214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C05A9DDD1B4D6698003CD214 /* ASJExpandableTextViewExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASJExpandableTextViewExampleTests.m; sourceTree = "<group>"; };
 		C0CBA3A51B5033F70013DD90 /* ASJExpandableTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASJExpandableTextView.h; sourceTree = "<group>"; };
 		C0CBA3A61B5033F70013DD90 /* ASJExpandableTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASJExpandableTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C05A9DBB1B4D6698003CD214 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C05A9DD41B4D6698003CD214 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -69,7 +48,6 @@
 			isa = PBXGroup;
 			children = (
 				C05A9DC01B4D6698003CD214 /* ASJExpandableTextViewExample */,
-				C05A9DDA1B4D6698003CD214 /* ASJExpandableTextViewExampleTests */,
 				C05A9DBF1B4D6698003CD214 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,7 +56,6 @@
 			isa = PBXGroup;
 			children = (
 				C05A9DBE1B4D6698003CD214 /* ASJExpandableTextViewExample.app */,
-				C05A9DD71B4D6698003CD214 /* ASJExpandableTextViewExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,23 +81,6 @@
 			children = (
 				C05A9DC21B4D6698003CD214 /* Info.plist */,
 				C05A9DC31B4D6698003CD214 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C05A9DDA1B4D6698003CD214 /* ASJExpandableTextViewExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				C05A9DDD1B4D6698003CD214 /* ASJExpandableTextViewExampleTests.m */,
-				C05A9DDB1B4D6698003CD214 /* Supporting Files */,
-			);
-			path = ASJExpandableTextViewExampleTests;
-			sourceTree = "<group>";
-		};
-		C05A9DDB1B4D6698003CD214 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C05A9DDC1B4D6698003CD214 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -156,39 +116,17 @@
 			productReference = C05A9DBE1B4D6698003CD214 /* ASJExpandableTextViewExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C05A9DD61B4D6698003CD214 /* ASJExpandableTextViewExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C05A9DE41B4D6698003CD214 /* Build configuration list for PBXNativeTarget "ASJExpandableTextViewExampleTests" */;
-			buildPhases = (
-				C05A9DD31B4D6698003CD214 /* Sources */,
-				C05A9DD41B4D6698003CD214 /* Frameworks */,
-				C05A9DD51B4D6698003CD214 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C05A9DD91B4D6698003CD214 /* PBXTargetDependency */,
-			);
-			name = ASJExpandableTextViewExampleTests;
-			productName = ASJExpandableTextViewExampleTests;
-			productReference = C05A9DD71B4D6698003CD214 /* ASJExpandableTextViewExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		C05A9DB61B4D6698003CD214 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Sudeep Jaiswal";
 				TargetAttributes = {
 					C05A9DBD1B4D6698003CD214 = {
 						CreatedOnToolsVersion = 6.3.2;
-					};
-					C05A9DD61B4D6698003CD214 = {
-						CreatedOnToolsVersion = 6.3.2;
-						TestTargetID = C05A9DBD1B4D6698003CD214;
 					};
 				};
 			};
@@ -206,7 +144,6 @@
 			projectRoot = "";
 			targets = (
 				C05A9DBD1B4D6698003CD214 /* ASJExpandableTextViewExample */,
-				C05A9DD61B4D6698003CD214 /* ASJExpandableTextViewExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -220,13 +157,6 @@
 				C05A9DD21B4D6698003CD214 /* LaunchScreen.xib in Resources */,
 				C05A9DCF1B4D6698003CD214 /* Images.xcassets in Resources */,
 				C0122AB71B518E45004DED5D /* ASJInputAccessoryView.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C05A9DD51B4D6698003CD214 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,23 +174,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C05A9DD31B4D6698003CD214 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C05A9DDE1B4D6698003CD214 /* ASJExpandableTextViewExampleTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C05A9DD91B4D6698003CD214 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C05A9DBD1B4D6698003CD214 /* ASJExpandableTextViewExample */;
-			targetProxy = C05A9DD81B4D6698003CD214 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C05A9DCB1B4D6698003CD214 /* Main.storyboard */ = {
@@ -303,6 +217,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -369,6 +284,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = ASJExpandableTextViewExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sudeep.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -380,41 +296,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = ASJExpandableTextViewExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sudeep.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		C05A9DE51B4D6698003CD214 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ASJExpandableTextViewExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ASJExpandableTextViewExample.app/ASJExpandableTextViewExample";
-			};
-			name = Debug;
-		};
-		C05A9DE61B4D6698003CD214 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ASJExpandableTextViewExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ASJExpandableTextViewExample.app/ASJExpandableTextViewExample";
 			};
 			name = Release;
 		};
@@ -435,15 +318,6 @@
 			buildConfigurations = (
 				C05A9DE21B4D6698003CD214 /* Debug */,
 				C05A9DE31B4D6698003CD214 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C05A9DE41B4D6698003CD214 /* Build configuration list for PBXNativeTarget "ASJExpandableTextViewExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C05A9DE51B4D6698003CD214 /* Debug */,
-				C05A9DE61B4D6698003CD214 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

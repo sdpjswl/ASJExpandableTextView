@@ -13,6 +13,8 @@
   IBOutlet ASJExpandableTextView *textView;
 }
 
+- (void)setup;
+
 @end
 
 @implementation ViewController
@@ -20,14 +22,22 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
-  textView.doneTappedBlock = ^(NSString *text) {
-    NSLog(@"you typed: %@", text);
-  };
+  [self setup];
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+- (void)setup
+{
+  textView.isExpandable = YES;
+  textView.maximumLineCount = 14;
+  textView.shouldShowDoneButtonOverKeyboard = YES;
+  textView.doneTappedBlock = ^(NSString *text) {
+    NSLog(@"you typed: %@", text);
+  };
 }
 
 @end

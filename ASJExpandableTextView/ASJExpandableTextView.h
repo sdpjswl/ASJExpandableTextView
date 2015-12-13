@@ -23,6 +23,7 @@
 @import UIKit;
 
 typedef void (^DoneTappedBlock)(NSString *text);
+typedef void (^HeightChangedBlock)(CGFloat newHeight);
 
 @interface ASJExpandableTextView : UITextView
 
@@ -35,7 +36,7 @@ typedef void (^DoneTappedBlock)(NSString *text);
  *  Sets whether the text view should increase and decrease
  *  in height according to its content.
  */
-@property (nonatomic) IBInspectable BOOL hasDynamicHeight;
+@property (nonatomic) IBInspectable BOOL isExpandable;
 
 /**
  *  This property is only of use when "hasDynamicHeight" is YES.
@@ -55,5 +56,14 @@ typedef void (^DoneTappedBlock)(NSString *text);
  *  not set to YES.
  */
 @property (copy) DoneTappedBlock doneTappedBlock;
+
+/**
+ *  A block that will be executed when the height of the text view changes.
+ *  Unusable if the text view is not expandable.
+ */
+@property (copy) HeightChangedBlock heightChangedBlock;
+
+- (void)setDoneTappedBlock:(DoneTappedBlock)doneTappedBlock;
+- (void)setHeightChangedBlock:(HeightChangedBlock)heightChangedBlock;
 
 @end

@@ -94,7 +94,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-  if (!areLayoutDefaultsSet && _hasDynamicHeight) {
+  if (!areLayoutDefaultsSet && _isExpandable) {
     [self setLayoutDefaults];
     [self setPlaceholderLabel];
     areLayoutDefaultsSet = YES;
@@ -144,7 +144,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 }
 
 - (void)setDefaults {
-  _hasDynamicHeight = NO;
+  _isExpandable = NO;
   _maximumLineCount = 4;
   _shouldShowDoneButtonOverKeyboard = NO;
   self.shouldShowPlaceholder = NO;
@@ -168,10 +168,10 @@ typedef void (^AccessoryViewDoneBlock)(void);
   placeholderLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   placeholderLabel.lineBreakMode = NSLineBreakByWordWrapping;
   placeholderLabel.numberOfLines = 0;
+  placeholderLabel.alpha = 0.7;
   placeholderLabel.text = self.placeholder;
-  placeholderLabel.textColor = self.textColor;
+  placeholderLabel.textColor = [UIColor lightGrayColor];
   placeholderLabel.font = self.font;
-  placeholderLabel.alpha = 0.6;
   placeholderLabel.backgroundColor = [UIColor clearColor];
   [self addSubview:placeholderLabel];
   [placeholderLabel sizeToFit];
@@ -194,7 +194,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
    object:self queue:[NSOperationQueue mainQueue]
    usingBlock:^(NSNotification *note) {
      [self handleTextChange];
-     if (_hasDynamicHeight) {
+     if (_isExpandable) {
        [self handleExpansion];
      }
    }];
@@ -210,7 +210,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
   }
 }
 
-- (void)handleExpansion {
+- (void)handleExpansion
+{
   BOOL isOnCurrentLine = (self.currentContentHeight == previousContentHeight) ? YES : NO;
   if (isOnCurrentLine) {
     return;
@@ -275,7 +276,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
   return self.font.lineHeight;
 }
 
-- (void)animateConstraintToHeight:(CGFloat)height {
+- (void)animateConstraintToHeight:(CGFloat)height
+{
   [self.superview layoutIfNeeded];
   self.heightConstraint.constant = height;
   [UIView animateWithDuration:0.30
@@ -285,9 +287,18 @@ typedef void (^AccessoryViewDoneBlock)(void);
                      [self scrollToBottom];
                      [self.superview layoutIfNeeded];
                    } completion:nil];
+  
+  if (_heightChangedBlock) {
+    _heightChangedBlock(height);
+  }
 }
 
-- (void)animateFrameToHeight:(CGFloat)height {
+- (void)animateFrameToHeight:(CGFloat)height
+{
+  if (_heightChangedBlock) {
+    _heightChangedBlock(height);
+  }
+  
   [UIView animateWithDuration:0.30
                         delay:0.0
                       options:UIViewAnimationOptionLayoutSubviews
@@ -316,7 +327,6 @@ typedef void (^AccessoryViewDoneBlock)(void);
   NSRange range = NSMakeRange(self.text.length - 1, 1);
   [self scrollRangeToVisible:range];
 }
-
 
 #pragma mark - Property setter overrides
 
