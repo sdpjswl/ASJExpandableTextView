@@ -11,7 +11,7 @@ Creating an ASJExpandableTextView is easy. It has a simple interface consisting 
 Sets the placeholder. Visible when there is nothing typed in the text view.
 
 ```
-@property (nonatomic) IBInspectable BOOL hasDynamicHeight;
+@property (nonatomic) IBInspectable BOOL isExpandable;
 ```
 Set this to make the text view expand and contract according to its content.
 
