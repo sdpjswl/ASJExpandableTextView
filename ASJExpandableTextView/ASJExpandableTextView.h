@@ -39,7 +39,7 @@ typedef void (^HeightChangedBlock)(CGFloat newHeight);
 @property (nonatomic) IBInspectable BOOL isExpandable;
 
 /**
- *  This property is only of use when "hasDynamicHeight" is YES.
+ *  This property is only of use when 'isExpandable' is YES.
  *  Sets the maximum number of visible lines of text.
  */
 @property (nonatomic) IBInspectable NSUInteger maximumLineCount;
