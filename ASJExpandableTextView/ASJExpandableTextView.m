@@ -159,7 +159,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
   _maximumLineCount = 4;
   _shouldShowDoneButtonOverKeyboard = NO;
   self.shouldShowPlaceholder = NO;
-  self.textContainerInset = UIEdgeInsetsMake(8, 6, 8, 8);
+  self.textContainerInset = UIEdgeInsetsMake(8, 8, 8, 8);
 }
 
 - (void)executeDefaultFontHack
