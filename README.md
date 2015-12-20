@@ -1,7 +1,18 @@
 # ASJExpandableTextView
+
 UITextView's most obvious omission is the ability to set placeholder text. This class fixes that and provides more. You can make the text view expand and contract according to its content and have a "Done" button over the keyboard to hide it.
 
 ![alt tag](Images/Screenshot.png)
+
+# Installation
+
+Cocoapods is the preferred way to install this library. Add this command to your `Podfile`:
+
+```
+pod 'ASJExpandableTextView'
+```
+
+# Usage
 
 Creating an ASJExpandableTextView is easy. It has a simple interface consisting of four properties which are IBInspectable. This means that they can be set using the interface builder of your choice; Xibs or Storyboards.
 
