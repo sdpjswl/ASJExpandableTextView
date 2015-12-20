@@ -88,7 +88,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 {
   self = [super initWithCoder:coder];
   if (self) {
-    [self initialisations];
+    [self setup];
   }
   return self;
 }
@@ -146,7 +146,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 #pragma mark - Setup
 
-- (void)initialisations
+- (void)setup
 {
   [self setDefaults];
   [self executeDefaultFontHack];
