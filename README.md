@@ -12,6 +12,8 @@ Cocoapods is the preferred way to install this library. Add this command to your
 pod 'ASJExpandableTextView'
 ```
 
+# Usage
+
 Creating an ASJExpandableTextView is easy. It has a simple interface consisting of four properties which are IBInspectable. This means that they can be set using the interface builder of your choice; Xibs or Storyboards.
 
 ```
