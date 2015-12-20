@@ -1,5 +1,4 @@
 # ASJExpandableTextView
-=======================
 
 UITextView's most obvious omission is the ability to set placeholder text. This class fixes that and provides more. You can make the text view expand and contract according to its content and have a "Done" button over the keyboard to hide it.
 
