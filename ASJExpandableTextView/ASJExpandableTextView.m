@@ -93,12 +93,16 @@ typedef void (^AccessoryViewDoneBlock)(void);
   return self;
 }
 
-- (void)layoutSubviews {
+- (void)layoutSubviews
+{
   [super layoutSubviews];
-  if (!areLayoutDefaultsSet && _isExpandable) {
+  if (!areLayoutDefaultsSet && _isExpandable)
+  {
     [self setLayoutDefaults];
-    [self setPlaceholderLabel];
     areLayoutDefaultsSet = YES;
+  }
+  if (!placeholderLabel) {
+    [self setPlaceholderLabel];
   }
 }
 
@@ -109,7 +113,6 @@ typedef void (^AccessoryViewDoneBlock)(void);
   defaultTextViewHeight = self.frame.size.height;
   previousContentHeight = _currentContentHeight = defaultContentHeight;
 }
-
 
 #pragma mark - Accessory view
 
@@ -143,7 +146,6 @@ typedef void (^AccessoryViewDoneBlock)(void);
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
 #pragma mark - Setup
 
 - (void)setup
@@ -159,7 +161,6 @@ typedef void (^AccessoryViewDoneBlock)(void);
   _maximumLineCount = 4;
   _shouldShowDoneButtonOverKeyboard = NO;
   self.shouldShowPlaceholder = NO;
-  self.textContainerInset = UIEdgeInsetsMake(8, 8, 8, 8);
 }
 
 - (void)executeDefaultFontHack
@@ -173,23 +174,27 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 - (void)setPlaceholderLabel
 {
-  CGFloat x = 10;
+  CGFloat x = 4;
   CGFloat y = 8;
-  CGFloat width = self.frame.size.width - 20;
+  CGFloat width = self.frame.size.width - (2.0 * x);
   CGFloat height = 0;
   placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
+  placeholderLabel.enabled = YES;
+  placeholderLabel.highlighted = NO;
   placeholderLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   placeholderLabel.lineBreakMode = NSLineBreakByWordWrapping;
   placeholderLabel.numberOfLines = 0;
-  placeholderLabel.alpha = 0.7;
+  placeholderLabel.textColor = [UIColor colorWithWhite: 0.70 alpha:1];
   placeholderLabel.text = self.placeholder;
-  placeholderLabel.textColor = [UIColor lightGrayColor];
   placeholderLabel.font = self.font;
   placeholderLabel.backgroundColor = [UIColor clearColor];
   [self addSubview:placeholderLabel];
   [placeholderLabel sizeToFit];
+  
+  if (self.text.length) {
+    self.shouldShowPlaceholder = NO;
+  }
 }
-
 
 #pragma mark - Text change
 
@@ -243,7 +248,6 @@ typedef void (^AccessoryViewDoneBlock)(void);
 {
   return self.contentSize.height;
 }
-
 
 #pragma mark - Next and previous lines
 
@@ -373,7 +377,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 {
   _shouldShowPlaceholder = shouldShowPlaceholder;
   if (_shouldShowPlaceholder) {
-    placeholderLabel.alpha = 0.5;
+    placeholderLabel.alpha = 1.0;
     isPlaceholderVisible = YES;
     return;
   }

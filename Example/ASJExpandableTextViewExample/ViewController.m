@@ -32,6 +32,7 @@
 
 - (void)setup
 {
+  textView.placeholder = @"Type something here...";
   textView.isExpandable = YES;
   textView.maximumLineCount = 14;
   textView.shouldShowDoneButtonOverKeyboard = YES;
