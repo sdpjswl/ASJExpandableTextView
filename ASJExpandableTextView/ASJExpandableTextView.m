@@ -41,7 +41,6 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 @end
 
-
 @interface ASJExpandableTextView () {
   UILabel *placeholderLabel;
   NSUInteger currentLine;
@@ -174,8 +173,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 - (void)setPlaceholderLabel
 {
-  CGFloat x = 4;
-  CGFloat y = 8;
+  CGFloat x = self.textContainer.lineFragmentPadding + self.textContainerInset.left;
+  CGFloat y = self.textContainerInset.top;
   CGFloat width = self.frame.size.width - (2.0 * x);
   CGFloat height = 0;
   placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
