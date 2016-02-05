@@ -171,6 +171,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
   self.text = nil;
 }
 
+#warning added placeholder color & override text container
+
 - (void)setPlaceholderLabel
 {
   CGFloat x = self.textContainer.lineFragmentPadding + self.textContainerInset.left;
