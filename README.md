@@ -6,7 +6,7 @@ UITextView's most obvious omission is the ability to set placeholder text. This 
 
 # Installation
 
-Cocoapods is the preferred way to install this library. Add this command to your `Podfile`:
+CocoaPods is the preferred way to install this library. Add this command to your `Podfile`:
 
 ```
 pod 'ASJExpandableTextView'
