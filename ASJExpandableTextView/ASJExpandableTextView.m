@@ -57,10 +57,10 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 - (void)setup;
 - (void)setLayoutDefaults;
-- (void)prepareInputAccessoryView;
 - (void)setDefaults;
 - (void)executeDefaultFontHack;
 - (void)setPlaceholderLabel;
+- (void)listenForContentSizeChanges;
 - (void)listenForNotifications;
 - (void)handleTextChange;
 - (void)handleExpansion;
@@ -69,6 +69,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 - (void)animateConstraintToHeight:(CGFloat)height;
 - (void)animateFrameToHeight:(CGFloat)height;
 - (void)scrollToBottom;
+- (void)prepareInputAccessoryView;
 
 @end
 
@@ -108,7 +109,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 - (void)setLayoutDefaults
 {
   currentLine = 1;
-  defaultContentHeight = self.contentSize.height;
+  defaultContentHeight = self.currentContentHeight;
   defaultTextViewHeight = self.frame.size.height;
   previousContentHeight = _currentContentHeight = defaultContentHeight;
 }
@@ -140,17 +141,13 @@ typedef void (^AccessoryViewDoneBlock)(void);
   return (ASJInputAccessoryView *)[[NSBundle mainBundle] loadNibNamed:@"ASJInputAccessoryView" owner:self options:nil][0];
 }
 
-- (void)dealloc
-{
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 #pragma mark - Setup
 
 - (void)setup
 {
   [self setDefaults];
   [self executeDefaultFontHack];
+  [self listenForContentSizeChanges];
   [self listenForNotifications];
 }
 
@@ -185,7 +182,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
   placeholderLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   placeholderLabel.lineBreakMode = NSLineBreakByWordWrapping;
   placeholderLabel.numberOfLines = 0;
-  placeholderLabel.textColor = [UIColor colorWithWhite: 0.70 alpha:1];
+  placeholderLabel.textColor = [UIColor colorWithWhite:0.70 alpha:1];
   placeholderLabel.text = self.placeholder;
   placeholderLabel.font = self.font;
   placeholderLabel.backgroundColor = [UIColor clearColor];
@@ -197,25 +194,50 @@ typedef void (^AccessoryViewDoneBlock)(void);
   }
 }
 
+#pragma mark - Content size change
+
+- (void)listenForContentSizeChanges
+{
+  [self addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+  if (![keyPath isEqualToString:@"contentSize"]) {
+    return;
+  }
+  [self handleExpansion];
+}
+
+- (void)dealloc
+{
+  [self removeObserver:self forKeyPath:@"contentSize"];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Text change
 
 - (void)listenForNotifications
 {
+  __weak typeof(self) weakSelf = self;
+  
   [[NSNotificationCenter defaultCenter]
    addObserverForName:UITextViewTextDidBeginEditingNotification
    object:self queue:[NSOperationQueue mainQueue]
-   usingBlock:^(NSNotification *note) {
-     [self handleTextChange];
+   usingBlock:^(NSNotification *note)
+   {
+     typeof(weakSelf) strongSelf = weakSelf;
+     [strongSelf handleTextChange];
    }];
   
   [[NSNotificationCenter defaultCenter]
    addObserverForName:UITextViewTextDidChangeNotification
    object:self queue:[NSOperationQueue mainQueue]
-   usingBlock:^(NSNotification *note) {
-     [self handleTextChange];
-     if (_isExpandable) {
-       [self handleExpansion];
-     }
+   usingBlock:^(NSNotification *note)
+   {
+     typeof(weakSelf) strongSelf = weakSelf;
+     [strongSelf handleTextChange];
+     [strongSelf handleExpansion];
    }];
 }
 
@@ -232,10 +254,15 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 - (void)handleExpansion
 {
+  if (!self.isExpandable) {
+    return;
+  }
+  
   BOOL isOnCurrentLine = (self.currentContentHeight == previousContentHeight) ? YES : NO;
   if (isOnCurrentLine) {
     return;
   }
+  NSLog(@"curr: %f prev: %f", self.currentContentHeight, previousContentHeight);
   BOOL isOnNextLine = (self.currentContentHeight > previousContentHeight) ? YES : NO;
   previousContentHeight = self.currentContentHeight;
   if (isOnNextLine) {
