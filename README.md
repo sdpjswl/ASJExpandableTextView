@@ -17,27 +17,27 @@ pod 'ASJExpandableTextView'
 Creating an ASJExpandableTextView is easy. It has a simple interface consisting of four properties which are IBInspectable. This means that they can be set using the interface builder of your choice; Xibs or Storyboards.
 
 ```
-@property (copy, nonatomic) IBInspectable NSString *placeholder;
+@property (nullable, copy, nonatomic) IBInspectable NSString *placeholder;
 ```
 Sets the placeholder. Visible when there is nothing typed in the text view.
 
 ```
-@property (nonatomic) IBInspectable BOOL isExpandable;
+@property (assign, nonatomic) IBInspectable BOOL isExpandable;
 ```
 Set this to make the text view expand and contract according to its content.
 
 ```
-@property (nonatomic) IBInspectable NSUInteger maximumLineCount;
+@property (assign, nonatomic) IBInspectable NSUInteger maximumLineCount;
 ```
 You can set the number of visible lines of the text view. Default is 4. To use this property, `isExpandable` must be set to `YES`.
 
 ```
-@property (nonatomic) IBInspectable BOOL shouldShowDoneButtonOverKeyboard;
+@property (assign, nonatomic) IBInspectable BOOL shouldShowDoneButtonOverKeyboard;
 ```
 The "return" key on the keyboard for a `UITextView` brings a new line, unlike a `UITextField` where the keyboard gets hidden. Set this property to show a "Done" button over the keyboard which can hide the keyboard.
 
 ```
-@property (copy) DoneTappedBlock doneTappedBlock;
+@property (nullable, copy) DoneTappedBlock doneTappedBlock;
 ```
 You can handle the event of the keyboard getting hidden using this block. To use this property, `shouldShowDoneButtonOverKeyboard` must be set to `YES`.
 

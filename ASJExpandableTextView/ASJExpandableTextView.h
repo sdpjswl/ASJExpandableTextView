@@ -22,6 +22,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void (^DoneTappedBlock)(NSString *text);
 typedef void (^HeightChangedBlock)(CGFloat newHeight);
 
@@ -30,40 +32,42 @@ typedef void (^HeightChangedBlock)(CGFloat newHeight);
 /**
  *  Sets the placeholder text when no text has been input.
  */
-@property (copy, nonatomic) IBInspectable NSString *placeholder;
+@property (nullable, copy, nonatomic) IBInspectable NSString *placeholder;
 
 /**
  *  Sets whether the text view should increase and decrease
  *  in height according to its content.
  */
-@property (nonatomic) IBInspectable BOOL isExpandable;
+@property (assign, nonatomic) IBInspectable BOOL isExpandable;
 
 /**
  *  This property is only of use when 'isExpandable' is YES.
  *  Sets the maximum number of visible lines of text.
  */
-@property (nonatomic) IBInspectable NSUInteger maximumLineCount;
+@property (assign, nonatomic) IBInspectable NSUInteger maximumLineCount;
 
 /**
  *  Set this property "YES" to show a "Done" button over the
  *  keyboard.  Tapping it will hide the keyboard.
  */
-@property (nonatomic) IBInspectable BOOL shouldShowDoneButtonOverKeyboard;
+@property (assign, nonatomic) IBInspectable BOOL shouldShowDoneButtonOverKeyboard;
 
 /**
  *  A block that will be executed when the "Done" button over
  *  the keyboard will be tapped. Unusable if "shouldShowDoneButtonOverKeyboard"
  *  not set to YES.
  */
-@property (copy) DoneTappedBlock doneTappedBlock;
+@property (nullable, copy) DoneTappedBlock doneTappedBlock;
 
 /**
  *  A block that will be executed when the height of the text view changes.
  *  Unusable if the text view is not expandable.
  */
-@property (copy) HeightChangedBlock heightChangedBlock;
+@property (nullable, copy) HeightChangedBlock heightChangedBlock;
 
-- (void)setDoneTappedBlock:(DoneTappedBlock)doneTappedBlock;
-- (void)setHeightChangedBlock:(HeightChangedBlock)heightChangedBlock;
+- (void)setDoneTappedBlock:(DoneTappedBlock _Nullable)doneTappedBlock;
+- (void)setHeightChangedBlock:(HeightChangedBlock _Nullable)heightChangedBlock;
 
 @end
+
+NS_ASSUME_NONNULL_END

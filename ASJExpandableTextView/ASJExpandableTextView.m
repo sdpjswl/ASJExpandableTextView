@@ -49,11 +49,11 @@ typedef void (^AccessoryViewDoneBlock)(void);
 }
 
 @property (weak, nonatomic) ASJInputAccessoryView *asjInputAccessoryView;
-@property (nonatomic) CGFloat heightOfOneLine;
-@property (nonatomic) CGFloat currentContentHeight;
-@property (nonatomic) CGFloat currentTextViewHeight;
-@property (nonatomic) BOOL shouldShowPlaceholder;
-@property (nonatomic) NSLayoutConstraint *heightConstraint;
+@property (assign, nonatomic) CGFloat heightOfOneLine;
+@property (assign, nonatomic) CGFloat currentContentHeight;
+@property (assign, nonatomic) CGFloat currentTextViewHeight;
+@property (assign, nonatomic) BOOL shouldShowPlaceholder;
+@property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
 
 - (void)setup;
 - (void)setLayoutDefaults;
@@ -167,8 +167,6 @@ typedef void (^AccessoryViewDoneBlock)(void);
   self.text = @"weirdness";
   self.text = nil;
 }
-
-#warning added placeholder color & override text container
 
 - (void)setPlaceholderLabel
 {
