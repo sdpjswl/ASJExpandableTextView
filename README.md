@@ -1,6 +1,6 @@
 # ASJExpandableTextView
 
-UITextView's most obvious omission is the ability to set placeholder text. This class fixes that and provides more. You can make the text view expand and contract according to its content and have a "Done" button over the keyboard to hide it.
+`UITextView`'s most obvious omission is the ability to set placeholder text. This class fixes that and provides more. You can make the text view expand and contract according to its content and have a "Done" button over the keyboard to hide it.
 
 ![alt tag](Images/Screenshot.png)
 
@@ -14,7 +14,7 @@ pod 'ASJExpandableTextView'
 
 # Usage
 
-Creating an ASJExpandableTextView is easy. It has a simple interface consisting of four properties which are IBInspectable. This means that they can be set using the interface builder of your choice; Xibs or Storyboards.
+Creating an `ASJExpandableTextView` is easy. It has a simple interface consisting of four properties which are `IBInspectable`. This means that they can be set using the interface builder of your choice; Xibs or Storyboards.
 
 ```
 @property (nullable, copy, nonatomic) IBInspectable NSString *placeholder;
@@ -43,7 +43,7 @@ You can handle the event of the keyboard getting hidden using this block. To use
 
 ![alt tag](Images/IBInspectable.png)
 
-You can create one using just the interface builder, drop in a UITextView and change the class to `ASJExpandableTextView`.
+You can create one using just the interface builder, drop in a `UITextView` and change the class to `ASJExpandableTextView`.
 
 ![alt tag](Images/CustomClass.png)
 
@@ -54,4 +54,4 @@ You can create one using just the interface builder, drop in a UITextView and ch
 
 # License
 
-ASJExpandableTextView is available under the MIT license. See the LICENSE file for more info.
+`ASJExpandableTextView` is available under the MIT license. See the LICENSE file for more info.
