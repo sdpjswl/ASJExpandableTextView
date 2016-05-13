@@ -14,31 +14,36 @@ pod 'ASJExpandableTextView'
 
 # Usage
 
-Creating an `ASJExpandableTextView` is easy. It has a simple interface consisting of four properties which are `IBInspectable`. This means that they can be set using the interface builder of your choice; Xibs or Storyboards.
+Creating an `ASJExpandableTextView` is easy. It has a simple interface consisting of four properties which are `IBInspectable`. This means that they can be set using the interface builder of your choice; xibs or storyboards.
 
 ```
 @property (nullable, copy, nonatomic) IBInspectable NSString *placeholder;
 ```
+
 Sets the placeholder. Visible when there is nothing typed in the text view.
 
 ```
 @property (assign, nonatomic) IBInspectable BOOL isExpandable;
 ```
+
 Set this to make the text view expand and contract according to its content.
 
 ```
 @property (assign, nonatomic) IBInspectable NSUInteger maximumLineCount;
 ```
+
 You can set the number of visible lines of the text view. Default is 4. To use this property, `isExpandable` must be set to `YES`.
 
 ```
 @property (assign, nonatomic) IBInspectable BOOL shouldShowDoneButtonOverKeyboard;
 ```
+
 The "return" key on the keyboard for a `UITextView` brings a new line, unlike a `UITextField` where the keyboard gets hidden. Set this property to show a "Done" button over the keyboard which can hide the keyboard.
 
 ```
 @property (nullable, copy) DoneTappedBlock doneTappedBlock;
 ```
+
 You can handle the event of the keyboard getting hidden using this block. To use this property, `shouldShowDoneButtonOverKeyboard` must be set to `YES`.
 
 ![alt tag](Images/IBInspectable.png)
@@ -47,10 +52,10 @@ You can create one using just the interface builder, drop in a `UITextView` and 
 
 ![alt tag](Images/CustomClass.png)
 
-###Thanks
+# Credits
 
-- To [Abhijit Kayande](https://github.com/Abhijit-Kayande) for fixing the choppy animation
-- To [devxoul](https://github.com/devxoul/UITextView-Placeholder) for placeholder label position fix
+- To [Abhijit Kayande](https://github.com/Abhijit-Kayande) for fixing the choppy animation.
+- To [devxoul](https://github.com/devxoul/UITextView-Placeholder) for placeholder label position fix.
 
 # License
 
