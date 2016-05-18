@@ -49,11 +49,11 @@ typedef void (^AccessoryViewDoneBlock)(void);
   BOOL isPlaceholderVisible, areLayoutDefaultsSet;
 }
 
-@property (weak, nonatomic) ASJInputAccessoryView *asjInputAccessoryView;
 @property (assign, nonatomic) CGFloat heightOfOneLine;
 @property (assign, nonatomic) CGFloat currentContentHeight;
 @property (assign, nonatomic) CGFloat currentTextViewHeight;
 @property (assign, nonatomic) BOOL shouldShowPlaceholder;
+@property (strong, nonatomic) ASJInputAccessoryView *asjInputAccessoryView;
 @property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
 
 - (void)setup;
@@ -261,7 +261,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
   if (isOnCurrentLine) {
     return;
   }
-  NSLog(@"curr: %f prev: %f", self.currentContentHeight, previousContentHeight);
+  
   BOOL isOnNextLine = (self.currentContentHeight > previousContentHeight) ? YES : NO;
   previousContentHeight = self.currentContentHeight;
   if (isOnNextLine) {
@@ -287,7 +287,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
   if (self.currentContentHeight <= self.currentTextViewHeight) {
     return;
   }
-  CGFloat newHeight = 0.0;
+  CGFloat newHeight = 0.0f;
   BOOL isHeightConstraintAvailable = self.heightConstraint ? YES : NO;
   if (isHeightConstraintAvailable) {
     newHeight = self.heightConstraint.constant + round(self.heightOfOneLine);
@@ -308,7 +308,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
   if (self.currentTextViewHeight <= defaultTextViewHeight) {
     return;
   }
-  CGFloat newHeight = 0.0;
+  CGFloat newHeight = 0.0f;
   BOOL isHeightConstraintAvailable = self.heightConstraint ? YES : NO;
   if (isHeightConstraintAvailable) {
     newHeight = self.heightConstraint.constant - round(self.heightOfOneLine);
@@ -329,8 +329,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
 {
   [self.superview layoutIfNeeded];
   self.heightConstraint.constant = height;
-  [UIView animateWithDuration:0.30
-                        delay:0.0
+  [UIView animateWithDuration:0.30f
+                        delay:0.0f
                       options:UIViewAnimationOptionLayoutSubviews
                    animations:^{
                      [self scrollToBottom];
@@ -348,8 +348,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
     _heightChangedBlock(height);
   }
   
-  [UIView animateWithDuration:0.30
-                        delay:0.0
+  [UIView animateWithDuration:0.30f
+                        delay:0.0f
                       options:UIViewAnimationOptionLayoutSubviews
                    animations:^{
                      CGFloat x = self.frame.origin.x;
@@ -404,11 +404,11 @@ typedef void (^AccessoryViewDoneBlock)(void);
 {
   _shouldShowPlaceholder = shouldShowPlaceholder;
   if (_shouldShowPlaceholder) {
-    placeholderLabel.alpha = 1.0;
+    placeholderLabel.alpha = 1.0f;
     isPlaceholderVisible = YES;
     return;
   }
-  placeholderLabel.alpha = 0.0;
+  placeholderLabel.alpha = 0.0f;
   isPlaceholderVisible = NO;
 }
 
