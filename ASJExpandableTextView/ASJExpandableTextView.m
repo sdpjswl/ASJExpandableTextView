@@ -25,6 +25,8 @@
 
 typedef void (^AccessoryViewDoneBlock)(void);
 
+#define kDefaultPlaceholderTextColor [UIColor colorWithWhite:0.7f alpha:1.0f]
+
 @interface ASJInputAccessoryView : UIView
 
 @property (copy) AccessoryViewDoneBlock doneTappedBlock;
@@ -156,6 +158,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 {
   _isExpandable = NO;
   _maximumLineCount = 4;
+  _placeholderTextColor = kDefaultPlaceholderTextColor;
   _shouldShowDoneButtonOverKeyboard = NO;
   self.shouldShowPlaceholder = NO;
 }
@@ -181,7 +184,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
   placeholderLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   placeholderLabel.lineBreakMode = NSLineBreakByWordWrapping;
   placeholderLabel.numberOfLines = 0;
-  placeholderLabel.textColor = [UIColor colorWithWhite:0.70 alpha:1];
+  placeholderLabel.textColor = _placeholderTextColor;
   placeholderLabel.text = self.placeholder;
   placeholderLabel.font = self.font;
   placeholderLabel.backgroundColor = [UIColor clearColor];
@@ -384,10 +387,26 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 - (void)setPlaceholder:(NSString *)placeholder
 {
+  if (!placeholder.length) {
+    return;
+  }
+  
   _placeholder = placeholder;
-  placeholderLabel.text = _placeholder;
+  placeholderLabel.text = placeholder;
   [placeholderLabel sizeToFit];
   self.shouldShowPlaceholder = YES;
+}
+
+- (void)setPlaceholderTextColor:(UIColor *)placeholderTextColor
+{
+  if (!placeholderTextColor) {
+    _placeholderTextColor = kDefaultPlaceholderTextColor;
+  }
+  else {
+    _placeholderTextColor = placeholderTextColor;
+  }
+  
+  placeholderLabel.textColor = _placeholderTextColor;
 }
 
 - (void)setText:(NSString *)text

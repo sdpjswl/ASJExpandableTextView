@@ -36,6 +36,11 @@ typedef void (^HeightChangedBlock)(CGFloat newHeight);
 @property (nullable, copy, nonatomic) IBInspectable NSString *placeholder;
 
 /**
+ *  Sets the placeholder text color.
+ */
+@property (nullable, strong, nonatomic) IBInspectable UIColor *placeholderTextColor;
+
+/**
  *  Sets whether the text view should increase and decrease
  *  in height according to its content.
  */
