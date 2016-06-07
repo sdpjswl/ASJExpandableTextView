@@ -45,7 +45,6 @@ typedef void (^AccessoryViewDoneBlock)(void);
 @end
 
 @interface ASJExpandableTextView () {
-  UILabel *placeholderLabel;
   NSUInteger currentLine;
   CGFloat previousContentHeight, defaultTextViewHeight, defaultContentHeight;
   BOOL isPlaceholderVisible, areLayoutDefaultsSet;
@@ -56,6 +55,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 @property (assign, nonatomic) CGFloat currentTextViewHeight;
 @property (assign, nonatomic) BOOL shouldShowPlaceholder;
 @property (strong, nonatomic) ASJInputAccessoryView *asjInputAccessoryView;
+@property (strong, nonatomic) UILabel *placeholderLabel;
 @property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
 
 - (void)setup;
@@ -104,7 +104,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
     [self setLayoutDefaults];
     areLayoutDefaultsSet = YES;
   }
-  if (!placeholderLabel) {
+  if (!_placeholderLabel) {
     [self setPlaceholderLabel];
   }
 }
@@ -178,18 +178,20 @@ typedef void (^AccessoryViewDoneBlock)(void);
   CGFloat y = self.textContainerInset.top;
   CGFloat width = self.frame.size.width - (2.0 * x);
   CGFloat height = 0;
-  placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
-  placeholderLabel.enabled = YES;
-  placeholderLabel.highlighted = NO;
-  placeholderLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-  placeholderLabel.lineBreakMode = NSLineBreakByWordWrapping;
-  placeholderLabel.numberOfLines = 0;
-  placeholderLabel.textColor = _placeholderTextColor;
-  placeholderLabel.text = self.placeholder;
-  placeholderLabel.font = self.font;
-  placeholderLabel.backgroundColor = [UIColor clearColor];
-  [self addSubview:placeholderLabel];
-  [placeholderLabel sizeToFit];
+  
+  _placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
+  _placeholderLabel.enabled = YES;
+  _placeholderLabel.highlighted = NO;
+  _placeholderLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+  _placeholderLabel.lineBreakMode = NSLineBreakByWordWrapping;
+  _placeholderLabel.numberOfLines = 0;
+  _placeholderLabel.textColor = _placeholderTextColor;
+  _placeholderLabel.text = self.placeholder;
+  _placeholderLabel.font = self.font;
+  _placeholderLabel.backgroundColor = [UIColor clearColor];
+  
+  [self addSubview:_placeholderLabel];
+  [_placeholderLabel sizeToFit];
   
   if (self.text.length) {
     self.shouldShowPlaceholder = NO;
@@ -266,9 +268,10 @@ typedef void (^AccessoryViewDoneBlock)(void);
   }
   
   BOOL isOnNextLine = (self.currentContentHeight > previousContentHeight) ? YES : NO;
+  NSInteger multiplier = @(ceil(self.currentContentHeight/self.heightOfOneLine)).integerValue;
   previousContentHeight = self.currentContentHeight;
   if (isOnNextLine) {
-    [self handleNextLine];
+    [self handleNextLine:multiplier];
     return;
   }
   [self handlePreviousLine];
@@ -281,19 +284,20 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 #pragma mark - Next and previous lines
 
-- (void)handleNextLine
+- (void)handleNextLine:(NSInteger)multiplier
 {
-  currentLine++;
+  currentLine += multiplier;
   if (currentLine > _maximumLineCount) {
-    return;
+    currentLine = _maximumLineCount;
   }
+  
   if (self.currentContentHeight <= self.currentTextViewHeight) {
     return;
   }
   CGFloat newHeight = 0.0f;
   BOOL isHeightConstraintAvailable = self.heightConstraint ? YES : NO;
   if (isHeightConstraintAvailable) {
-    newHeight = self.heightConstraint.constant + round(self.heightOfOneLine);
+    newHeight = round(self.heightOfOneLine) * currentLine;
     [self animateConstraintToHeight:newHeight];
   }
   else {
@@ -392,8 +396,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
   }
   
   _placeholder = placeholder;
-  placeholderLabel.text = placeholder;
-  [placeholderLabel sizeToFit];
+  _placeholderLabel.text = placeholder;
+  [_placeholderLabel sizeToFit];
   self.shouldShowPlaceholder = YES;
 }
 
@@ -406,7 +410,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
     _placeholderTextColor = placeholderTextColor;
   }
   
-  placeholderLabel.textColor = _placeholderTextColor;
+  _placeholderLabel.textColor = _placeholderTextColor;
 }
 
 - (void)setText:(NSString *)text
@@ -423,11 +427,11 @@ typedef void (^AccessoryViewDoneBlock)(void);
 {
   _shouldShowPlaceholder = shouldShowPlaceholder;
   if (_shouldShowPlaceholder) {
-    placeholderLabel.alpha = 1.0f;
+    _placeholderLabel.alpha = 1.0f;
     isPlaceholderVisible = YES;
     return;
   }
-  placeholderLabel.alpha = 0.0f;
+  _placeholderLabel.alpha = 0.0f;
   isPlaceholderVisible = NO;
 }
 
