@@ -26,6 +26,7 @@
 typedef void (^AccessoryViewDoneBlock)(void);
 
 #define kDefaultPlaceholderTextColor [UIColor colorWithWhite:0.7f alpha:1.0f]
+static CGFloat const kPadding = 1.05f;
 
 @interface ASJInputAccessoryView : UIView
 
@@ -67,7 +68,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 - (void)listenForNotifications;
 - (void)handleTextChange;
 - (void)handleExpansion;
-- (void)handleNextLine;
+- (void)handleNextLine:(NSInteger)multiplier;
 - (void)handlePreviousLine;
 - (void)animateConstraintToHeight:(CGFloat)height;
 - (void)animateFrameToHeight:(CGFloat)height;
@@ -176,8 +177,8 @@ typedef void (^AccessoryViewDoneBlock)(void);
 {
   CGFloat x = self.textContainer.lineFragmentPadding + self.textContainerInset.left;
   CGFloat y = self.textContainerInset.top;
-  CGFloat width = self.frame.size.width - (2.0 * x);
-  CGFloat height = 0;
+  CGFloat width = self.frame.size.width - (2.0f * x);
+  CGFloat height = 0.0f;
   
   _placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
   _placeholderLabel.enabled = YES;
@@ -329,7 +330,7 @@ typedef void (^AccessoryViewDoneBlock)(void);
 
 - (CGFloat)heightOfOneLine
 {
-  return self.font.lineHeight;
+  return self.font.lineHeight + kPadding;
 }
 
 - (void)animateConstraintToHeight:(CGFloat)height
