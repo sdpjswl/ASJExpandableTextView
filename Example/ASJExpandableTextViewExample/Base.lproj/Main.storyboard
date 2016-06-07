@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9wG-sj-ab6">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Copy long text ->-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
@@ -18,8 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ND9-2Z-GO7">
-                                <rect key="frame" x="259" y="280" width="70" height="50"/>
-                                <animations/>
+                                <rect key="frame" x="259" y="324" width="70" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="0Dn-c1-Eq3"/>
@@ -31,8 +30,7 @@
                                 </state>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AA7-dK-xA7" customClass="ASJExpandableTextView">
-                                <rect key="frame" x="50" y="70" width="500" height="200"/>
-                                <animations/>
+                                <rect key="frame" x="50" y="114" width="500" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="DdN-Wc-rBD"/>
@@ -42,7 +40,6 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.81944444444444442" green="0.50302154943436661" blue="0.16559355214234717" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="AA7-dK-xA7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="7R6-ab-AoO"/>
@@ -61,13 +58,42 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="2Ny-1l-Ao5"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Copy long text --&gt;" id="Wq3-5B-55u">
+                        <barButtonItem key="rightBarButtonItem" title="Copy" id="GH8-lg-9QC">
+                            <connections>
+                                <action selector="copyTapped:" destination="vXZ-lx-hvc" id="buM-r6-fqh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="textView" destination="AA7-dK-xA7" id="cbx-cT-vl5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="838" y="434"/>
+            <point key="canvasLocation" x="1598" y="411"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EQh-yJ-4bj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9wG-sj-ab6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6gS-Oa-rwY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Mav-p9-xKg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YxH-u0-FAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="786" y="411"/>
         </scene>
     </scenes>
 </document>
