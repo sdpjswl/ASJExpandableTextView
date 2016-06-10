@@ -46,7 +46,7 @@ static CGFloat const kPadding = 1.05f;
 @end
 
 @interface ASJExpandableTextView () {
-  NSUInteger currentLine;
+  NSInteger currentLine;
   CGFloat previousContentHeight, defaultTextViewHeight, defaultContentHeight;
   BOOL isPlaceholderVisible, areLayoutDefaultsSet;
 }
@@ -69,7 +69,7 @@ static CGFloat const kPadding = 1.05f;
 - (void)handleTextChange;
 - (void)handleExpansion;
 - (void)handleNextLine:(NSInteger)multiplier;
-- (void)handlePreviousLine;
+- (void)handlePreviousLine:(NSInteger)multiplier;
 - (void)animateConstraintToHeight:(CGFloat)height;
 - (void)animateFrameToHeight:(CGFloat)height;
 - (void)scrollToBottom;
@@ -270,12 +270,17 @@ static CGFloat const kPadding = 1.05f;
   
   BOOL isOnNextLine = (self.currentContentHeight > previousContentHeight) ? YES : NO;
   NSInteger multiplier = @(ceil(self.currentContentHeight/self.heightOfOneLine)).integerValue;
-  previousContentHeight = self.currentContentHeight;
-  if (isOnNextLine) {
+  
+  if (isOnNextLine)
+  {
+    previousContentHeight = self.currentContentHeight;
     [self handleNextLine:multiplier];
     return;
   }
-  [self handlePreviousLine];
+  
+  multiplier = @(ceil(previousContentHeight/self.heightOfOneLine)).integerValue;
+  previousContentHeight = self.currentContentHeight;
+  [self handlePreviousLine:multiplier];
 }
 
 - (CGFloat)currentContentHeight
@@ -295,35 +300,35 @@ static CGFloat const kPadding = 1.05f;
   if (self.currentContentHeight <= self.currentTextViewHeight) {
     return;
   }
-  CGFloat newHeight = 0.0f;
+  CGFloat newHeight = round(self.heightOfOneLine) * currentLine;
   BOOL isHeightConstraintAvailable = self.heightConstraint ? YES : NO;
   if (isHeightConstraintAvailable) {
-    newHeight = round(self.heightOfOneLine) * currentLine;
     [self animateConstraintToHeight:newHeight];
   }
   else {
-    newHeight = self.currentTextViewHeight + round(self.heightOfOneLine);
     [self animateFrameToHeight:newHeight];
   }
 }
 
-- (void)handlePreviousLine
+- (void)handlePreviousLine:(NSInteger)multiplier
 {
-  currentLine--;
+  currentLine -= multiplier;
   if (self.currentContentHeight >= self.currentTextViewHeight) {
     return;
   }
   if (self.currentTextViewHeight <= defaultTextViewHeight) {
     return;
   }
-  CGFloat newHeight = 0.0f;
+  CGFloat newHeight = newHeight = round(self.heightOfOneLine) * currentLine;
+  if (newHeight < defaultTextViewHeight) {
+    newHeight = defaultTextViewHeight;
+  }
+  
   BOOL isHeightConstraintAvailable = self.heightConstraint ? YES : NO;
   if (isHeightConstraintAvailable) {
-    newHeight = self.heightConstraint.constant - round(self.heightOfOneLine);
     [self animateConstraintToHeight:newHeight];
   }
   else {
-    newHeight = self.currentTextViewHeight - round(self.heightOfOneLine);
     [self animateFrameToHeight:newHeight];
   }
 }
