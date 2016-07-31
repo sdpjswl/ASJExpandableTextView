@@ -60,8 +60,8 @@ You can create one using just the interface builder, drop in a `UITextView` and 
 
 # Credits
 
-- To [Abhijit Kayande](https://github.com/Abhijit-Kayande) for fixing the choppy animation.
-- To [devxoul](https://github.com/devxoul/UITextView-Placeholder) for placeholder label position fix.
+- To [Abhijit Kayande](https://github.com/Abhijit-Kayande) for fixing the choppy animation
+- To [devxoul](https://github.com/devxoul/UITextView-Placeholder) for placeholder label position fix
 
 # License
 
