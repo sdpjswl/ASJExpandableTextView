@@ -9,7 +9,8 @@
 #import "ViewController.h"
 #import "ASJExpandableTextView.h"
 
-@interface ViewController () {
+@interface ViewController () <UITextViewDelegate>
+{
   IBOutlet ASJExpandableTextView *textView;
 }
 
@@ -33,6 +34,7 @@
   textView.placeholder = @"Type something here...";
   textView.isExpandable = YES;
   textView.maximumLineCount = 14;
+  textView.lineSpacing = 1.5f;
   textView.shouldShowDoneButtonOverKeyboard = YES;
   [textView setDoneTappedBlock:^(NSString * _Nonnull text)
    {

@@ -40,6 +40,10 @@ typedef void (^HeightChangedBlock)(CGFloat newHeight);
  */
 @property (nullable, strong, nonatomic) IBInspectable UIColor *placeholderTextColor;
 
+#warning testing
+@property (assign, nonatomic) CGFloat lineSpacing;
+
+
 /**
  *  Sets whether the text view should increase and decrease
  *  in height according to its content.
