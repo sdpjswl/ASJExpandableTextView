@@ -178,7 +178,7 @@ static CGFloat const kPadding = 1.05f;
     CGFloat x = self.textContainer.lineFragmentPadding + self.textContainerInset.left;
     CGFloat y = self.textContainerInset.top;
     CGFloat width = CGRectGetWidth(self.frame) - (2.0f * x);
-    CGFloat height = CGRectGetHeight(self.frame) - (2.0f * y);
+    CGFloat height = _isPlaceholderHasFullViewHeight ? CGRectGetHeight(self.frame) - (2.0f * y) : 0.0;;
     
     _placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
     _placeholderLabel.enabled = YES;
@@ -193,6 +193,10 @@ static CGFloat const kPadding = 1.05f;
     _placeholderLabel.backgroundColor = [UIColor clearColor];
     
     [self addSubview:_placeholderLabel];
+    
+    if ( ! _isPlaceholderHasFullViewHeight) {
+         [_placeholderLabel sizeToFit];
+    }
     
     if (self.text.length) {
         self.shouldShowPlaceholder = NO;
