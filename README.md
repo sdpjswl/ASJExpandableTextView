@@ -56,7 +56,7 @@ The "return" key on the keyboard for a `UITextView` brings a new line, unlike a 
 @property (assign, nonatomic) BOOL placeholderUsesFullViewHeight;
 ```
 
-Determines whether the placeholder view is spread over the whole text view or is shown at the top left corner like usual. Details to `NO`.
+Determines whether the placeholder view is spread over the whole text view or is shown at the top left corner like usual. Defaults to `NO`.
 
 ```objc
 @property (nullable, copy) DoneTappedBlock doneTappedBlock;
