@@ -441,8 +441,7 @@ static CGFloat const kPadding = 1.05f;
   isPlaceholderVisible = NO;
 }
 
-#warning testing - http://stackoverflow.com/questions/4277551/iphone-uitextview-set-line-spacing
-
+// https://stackoverflow.com/a/12993071
 - (void)setLineSpacing:(CGFloat)lineSpacing
 {
   _lineSpacing = lineSpacing;
@@ -450,12 +449,8 @@ static CGFloat const kPadding = 1.05f;
   NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
   paragraphStyle.lineSpacing = lineSpacing;
   
-  NSString *string = self.text;
-  NSDictionary *ats = @{
-                        NSFontAttributeName : self.font,
-                        NSParagraphStyleAttributeName : paragraphStyle,
-                        };
-  self.attributedText = [[NSAttributedString alloc] initWithString:string attributes:ats];;
+  self.typingAttributes = @{ NSFontAttributeName : self.font,
+                             NSParagraphStyleAttributeName : paragraphStyle };
 }
 
 @end
