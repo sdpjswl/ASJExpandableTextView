@@ -29,6 +29,12 @@ Sets the placeholder. Visible when there is nothing typed in the text view.
 Sets the placeholder text color. Will work only when the placeholder is visible.
 
 ```objc
+@property (assign, nonatomic) CGFloat lineSpacing;
+```
+
+Sets the spacing between two lines of text.
+
+```objc
 @property (assign, nonatomic) IBInspectable BOOL isExpandable;
 ```
 
