@@ -64,6 +64,12 @@ typedef void (^HeightChangedBlock)(CGFloat newHeight);
 @property (assign, nonatomic) IBInspectable BOOL shouldShowDoneButtonOverKeyboard;
 
 /**
+ *  Set this property "YES" to make placeholder occupy
+ *  the full height of the text view. Default is "NO".
+ */
+@property (assign, nonatomic) BOOL placeholderUsesFullViewHeight;
+
+/**
  *  A block that will be executed when the "Done" button over
  *  the keyboard will be tapped. Unusable if "shouldShowDoneButtonOverKeyboard"
  *  not set to YES.

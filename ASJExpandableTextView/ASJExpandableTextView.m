@@ -133,8 +133,8 @@ static CGFloat const kPadding = 1.05f;
   ASJInputAccessoryView *inputAccessoryView = self.asjInputAccessoryView;
   inputAccessoryView.doneTappedBlock = ^{
     [self resignFirstResponder];
-    if (_doneTappedBlock) {
-      _doneTappedBlock(self.text);
+    if (self->_doneTappedBlock) {
+      self->_doneTappedBlock(self.text);
     }
   };
   self.inputAccessoryView = inputAccessoryView;
@@ -162,6 +162,7 @@ static CGFloat const kPadding = 1.05f;
   _maximumLineCount = 4;
   _placeholderTextColor = kDefaultPlaceholderTextColor;
   _shouldShowDoneButtonOverKeyboard = NO;
+  _placeholderUsesFullViewHeight = NO;
   self.shouldShowPlaceholder = NO;
 }
 
@@ -179,7 +180,7 @@ static CGFloat const kPadding = 1.05f;
   CGFloat x = self.textContainer.lineFragmentPadding + self.textContainerInset.left;
   CGFloat y = self.textContainerInset.top;
   CGFloat width = self.frame.size.width - (2.0f * x);
-  CGFloat height = 0.0f;
+  CGFloat height = _placeholderUsesFullViewHeight ? CGRectGetHeight(self.frame) - (2.0f * y) : 0.0;
   
   _placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
   _placeholderLabel.enabled = YES;
@@ -193,7 +194,10 @@ static CGFloat const kPadding = 1.05f;
   _placeholderLabel.backgroundColor = [UIColor clearColor];
   
   [self addSubview:_placeholderLabel];
-  [_placeholderLabel sizeToFit];
+  
+  if (!_placeholderUsesFullViewHeight) {
+    [_placeholderLabel sizeToFit];
+  }
   
   if (self.text.length) {
     self.shouldShowPlaceholder = NO;
@@ -232,19 +236,19 @@ static CGFloat const kPadding = 1.05f;
    object:self queue:[NSOperationQueue mainQueue]
    usingBlock:^(NSNotification *note)
    {
-     typeof(weakSelf) strongSelf = weakSelf;
-     [strongSelf handleTextChange];
-   }];
+    typeof(weakSelf) strongSelf = weakSelf;
+    [strongSelf handleTextChange];
+  }];
   
   [[NSNotificationCenter defaultCenter]
    addObserverForName:UITextViewTextDidChangeNotification
    object:self queue:[NSOperationQueue mainQueue]
    usingBlock:^(NSNotification *note)
    {
-     typeof(weakSelf) strongSelf = weakSelf;
-     [strongSelf handleTextChange];
-     [strongSelf handleExpansion];
-   }];
+    typeof(weakSelf) strongSelf = weakSelf;
+    [strongSelf handleTextChange];
+    [strongSelf handleExpansion];
+  }];
 }
 
 - (void)handleTextChange
@@ -347,9 +351,9 @@ static CGFloat const kPadding = 1.05f;
                         delay:0.0f
                       options:UIViewAnimationOptionLayoutSubviews
                    animations:^{
-                     [self scrollToBottom];
-                     [self.superview layoutIfNeeded];
-                   } completion:nil];
+    [self scrollToBottom];
+    [self.superview layoutIfNeeded];
+  } completion:nil];
   
   if (_heightChangedBlock) {
     _heightChangedBlock(height);
@@ -366,11 +370,11 @@ static CGFloat const kPadding = 1.05f;
                         delay:0.0f
                       options:UIViewAnimationOptionLayoutSubviews
                    animations:^{
-                     CGFloat x = self.frame.origin.x;
-                     CGFloat y = self.frame.origin.y;
-                     CGFloat width = self.frame.size.width;
-                     self.frame = CGRectMake(x, y, width, height);
-                   } completion:nil];
+    CGFloat x = self.frame.origin.x;
+    CGFloat y = self.frame.origin.y;
+    CGFloat width = self.frame.size.width;
+    self.frame = CGRectMake(x, y, width, height);
+  } completion:nil];
 }
 
 - (NSLayoutConstraint *)heightConstraint
