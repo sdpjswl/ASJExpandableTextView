@@ -78,6 +78,8 @@ typedef void (^HeightChangedBlock)(CGFloat newHeight);
 - (void)setDoneTappedBlock:(DoneTappedBlock _Nullable)doneTappedBlock;
 - (void)setHeightChangedBlock:(HeightChangedBlock _Nullable)heightChangedBlock;
 
+@property BOOL isPlaceholderHasFullViewHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END
