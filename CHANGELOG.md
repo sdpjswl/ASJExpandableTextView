@@ -7,6 +7,9 @@ Released on Tuesday, 25 Jan, 2022.
 * New property to set line spacing of the paragraph text.
 * New boolean to set whether placeholder label uses full height of text view.
 
+#### Fixed
+* Crash while opening accessory view in workspace.
+
 ## [0.4](https://github.com/sdpjswl/ASJExpandableTextView/releases/tag/0.4)
 Released on Friday, 10 Jun, 2016.
 
