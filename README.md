@@ -53,6 +53,12 @@ You can set the number of visible lines of the text view. Default is 4. To use t
 The "return" key on the keyboard for a `UITextView` brings a new line, unlike a `UITextField` where the keyboard gets hidden. Set this property to show a "Done" button over the keyboard which can hide the keyboard.
 
 ```objc
+@property (assign, nonatomic) BOOL placeholderUsesFullViewHeight;
+```
+
+Determines whether the placeholder view is spread over the whole text view or is shown at the top left corner like usual. Details to `NO`.
+
+```objc
 @property (nullable, copy) DoneTappedBlock doneTappedBlock;
 ```
 
@@ -68,6 +74,7 @@ You can create one using just the interface builder, drop in a `UITextView` and 
 
 - To [Abhijit Kayande](https://github.com/Abhijit-Kayande) for fixing the choppy animation
 - To [devxoul](https://github.com/devxoul/UITextView-Placeholder) for placeholder label position fix
+- To [Daleijn](https://github.com/Dalein) for adding new placeholder property
 
 # License
 
