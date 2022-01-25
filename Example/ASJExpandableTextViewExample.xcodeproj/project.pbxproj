@@ -50,9 +50,9 @@
 				C05A9DC01B4D6698003CD214 /* ASJExpandableTextViewExample */,
 				C05A9DBF1B4D6698003CD214 /* Products */,
 			);
-			indentWidth = 2;
+			indentWidth = 4;
 			sourceTree = "<group>";
-			tabWidth = 2;
+			tabWidth = 4;
 		};
 		C05A9DBF1B4D6698003CD214 /* Products */ = {
 			isa = PBXGroup;
